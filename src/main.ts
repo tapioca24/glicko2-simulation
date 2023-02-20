@@ -1,23 +1,22 @@
-import "./style.css";
-import typescriptLogo from "./typescript.svg";
-import { setupCounter } from "./counter";
+import Chart from "chart.js/auto";
 
-document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`;
+const ctx = document.getElementById("myChart") as HTMLCanvasElement;
 
-setupCounter(document.querySelector<HTMLButtonElement>("#counter")!);
+const chart = new Chart(ctx, {
+  type: "bar",
+  data: {
+    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    datasets: [
+      {
+        label: "# of Votes",
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1,
+      },
+    ],
+  },
+  options: {
+    scales: {
+      y: { beginAtZero: true },
+    },
+  },
+});
